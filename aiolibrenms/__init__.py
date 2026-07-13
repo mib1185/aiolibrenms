@@ -26,7 +26,7 @@ class Librenms:
         port: int = 443,
         use_ssl: bool = True,
     ) -> None:
-        """Librenms instace init."""
+        """Librenms instance init."""
         self.api = LibrenmsApi(aiohttp_session, api_key, host, port, use_ssl)
 
         self.devices = LibrenmsDevices(self.api)
