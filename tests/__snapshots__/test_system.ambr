@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: test_get_system_info
+  LibrenmsSystemInfo(database_ver='MariaDB 10.5.29-MariaDB-ubu2004', db_schema='2026_06_09_000000_change_vsz_to_big_int_processes_table (390)', local_branch='', local_date='2026-06-18T09:10:36+02:00', local_sha='', local_ver='26.6.1', netsnmp_ver='5.9.5.2', php_ver='8.4.21', python_ver='3.12.13', rrdtool_ver='1.9.0')
+# ---
