@@ -9,7 +9,7 @@ from .const import CONNECT_ERRORS, LOGGER
 from .exceptions import (
     LibrenmsError,
     LibrenmsForbiddenError,
-    LibrenmsFoundError,
+    LibrenmsNotFoundError,
     LibrenmsUnauthenticatedError,
 )
 
@@ -72,7 +72,7 @@ class LibrenmsApi:
             if resp.status == 403:
                 raise LibrenmsForbiddenError(err_msg)
             if resp.status == 404:
-                raise LibrenmsFoundError(err_msg)
+                raise LibrenmsNotFoundError(err_msg)
             return resp.raise_for_status()
 
         except CONNECT_ERRORS as err:

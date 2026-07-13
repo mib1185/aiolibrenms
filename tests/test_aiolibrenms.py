@@ -7,7 +7,7 @@ from aiohttp import ClientError
 
 from aiolibrenms.exceptions import (
     LibrenmsForbiddenError,
-    LibrenmsFoundError,
+    LibrenmsNotFoundError,
     LibrenmsUnauthenticatedError,
 )
 
@@ -24,7 +24,7 @@ async def test_errors(mock_librenms_with_data):
     ):
         await api.devices.async_get_device("FORBIDDEN")
 
-    with pytest.raises(LibrenmsFoundError, match="Device 99 does not exist"):
+    with pytest.raises(LibrenmsNotFoundError, match="Device 99 does not exist"):
         await api.devices.async_get_device("NOTFOUND")
 
     with pytest.raises(ClientError):

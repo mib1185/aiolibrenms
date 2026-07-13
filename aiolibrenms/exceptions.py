@@ -15,5 +15,5 @@ class LibrenmsForbiddenError(LibrenmsError):
     """Forbidden error."""
 
 
-class LibrenmsFoundError(LibrenmsError):
+class LibrenmsNotFoundError(LibrenmsError):
     """Not found error."""
