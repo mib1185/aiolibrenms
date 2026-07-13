@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "dev*": "development"
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "python": false,
+        "development": false
+    }
+}

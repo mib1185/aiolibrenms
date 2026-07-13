@@ -1,2 +1,33 @@
+[![Test](https://github.com/mib1185/aiolibrenms/actions/workflows/test.yml/badge.svg)](https://github.com/mib1185/aiolibrenms/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/mib1185/aiolibrenms/branch/main/graph/badge.svg?token=QRC1NSIONL)](https://codecov.io/gh/mib1185/aiolibrenms)
+[![Library version](https://img.shields.io/pypi/v/aiolibrenms.svg)](https://pypi.org/project/aiolibrenms)
+[![Supported versions](https://img.shields.io/pypi/pyversions/aiolibrenms.svg)](https://pypi.org/project/aiolibrenms)
+[![Formated with Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
 # aiolibrenms
-Asynchronous library to fetch data from a libreNMS instance.
+Asynchronous library to fetch data from a [libreNMS](https://www.librenms.org/) instance.. The main purpose of this library is the integration of an libreNMS instance into [Home Assistant](https://www.home-assistant.io/).
+
+:warning: **this is in early development state** :warning:
+
+breaking changes may occure at every time.
+
+## Requirements
+
+- Python >= 3.11
+- aiohttp
+
+## Installation
+
+```bash
+pip install aiolibrenms
+```
+
+## References
+
+- [libreNMS api reference](https://docs.librenms.org/API/)
+
+---
+You like my work?
+
+<a href="https://www.buymeacoffee.com/mib1185" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
