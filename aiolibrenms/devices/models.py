@@ -19,10 +19,8 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     disable_notify: bool
     disabled: bool
     display: str
-    features: str
     hardware: str
     hostname: str
-    icon: str
     ignore_status: bool
     ignore: bool
     inserted: datetime
@@ -46,7 +44,6 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     sys_name: str = field(metadata=field_options(alias="sysName"))
     transport: str
     type: str
-    version: str
 
     # default fields
     authalgo: str | None = field(default=None)
@@ -62,6 +59,8 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     dependency_parent_hostname: str | None = field(default=None)
     dependency_parent_id: str | None = field(default=None)
     display_template: str | None = field(default=None)
+    features: str | None = field(default=None)
+    icon: str | None = field(default=None)
     last_discovered: datetime | None = field(default=None)
     last_ping_timetaken: float | None = field(default=None)
     last_ping: datetime | None = field(default=None)
@@ -89,3 +88,4 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     )
     timeout: str | None = field(default=None)
     uptime: int | None = field(default=None)
+    version: str | None = field(default=None)
