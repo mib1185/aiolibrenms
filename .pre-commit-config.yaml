@@ -16,7 +16,9 @@ repos:
     rev: v4.4.0
     hooks:
       - id: trailing-whitespace
+        exclude: tests/__snapshots__/
       - id: end-of-file-fixer
+        exclude: tests/__snapshots__/
       - id: check-docstring-first
   - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.3.0

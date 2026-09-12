@@ -539,6 +539,20 @@ MOCK_DATA: dict = {
             }
         ),
     },
+    "devices/13/availability": {
+        "status": 200,
+        "body": json.dumps(
+            {
+                "status": "ok",
+                "availability": [
+                    {"duration": 86400, "availability_perc": "100.000000"},
+                    {"duration": 604800, "availability_perc": "99.988000"},
+                    {"duration": 2592000, "availability_perc": "99.991000"},
+                    {"duration": 31536000, "availability_perc": "99.816000"},
+                ],
+            }
+        ),
+    },
     "devices/INVALID_API_KEY": {
         "status": 401,
         "body": json.dumps({"message": "Unauthenticated."}),

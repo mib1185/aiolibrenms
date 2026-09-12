@@ -1,7 +1,7 @@
 """aiolibrenms devices api."""
 
 from ..api import LibrenmsSubApi
-from .models import LibrenmsDeviceInfo
+from .models import LibrenmsDeviceAvailabilities, LibrenmsDeviceInfo
 
 
 class LibrenmsDevices(LibrenmsSubApi):
@@ -21,7 +21,7 @@ class LibrenmsDevices(LibrenmsSubApi):
         """Get device information.
 
         Args:
-            device_id (str): id of hostname of the device to be fetched
+            device_id (str): id or hostname of the device to be fetched
 
         Returns:
             device info as `LibrenmsDeviceInfo`
@@ -29,3 +29,23 @@ class LibrenmsDevices(LibrenmsSubApi):
         result = await self.api.async_do_request(f"devices/{device_id}")
         assert isinstance(result, dict)
         return LibrenmsDeviceInfo.from_dict(result["devices"][0])
+
+    async def async_get_device_availability(
+        self, device_id: str
+    ) -> LibrenmsDeviceAvailabilities:
+        """Get calculated availabilities of a device.
+
+        Args:
+            device_id (str): id or hostname of the device to be fetched
+
+        Returns:
+            calculated availabilities as `LibrenmsDeviceAvailabilities`
+        """
+        result = await self.api.async_do_request(f"devices/{device_id}/availability")
+        assert isinstance(result, dict)
+        return LibrenmsDeviceAvailabilities.from_dict(
+            {
+                str(availability["duration"]): availability["availability_perc"]
+                for availability in result["availability"]
+            }
+        )

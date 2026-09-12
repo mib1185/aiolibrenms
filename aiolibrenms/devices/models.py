@@ -89,3 +89,13 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     timeout: str | None = field(default=None)
     uptime: int | None = field(default=None)
     version: str | None = field(default=None)
+
+
+@dataclass
+class LibrenmsDeviceAvailabilities(DataClassJSONMixin):
+    """Representation of the librenms device availabilities data."""
+
+    last_day: float = field(default=0.0, metadata=field_options(alias="86400"))
+    last_week: float = field(default=0.0, metadata=field_options(alias="604800"))
+    last_month: float = field(default=0.0, metadata=field_options(alias="2592000"))
+    last_year: float = field(default=0.0, metadata=field_options(alias="31536000"))
