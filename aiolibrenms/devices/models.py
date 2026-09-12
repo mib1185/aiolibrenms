@@ -11,7 +11,13 @@ from mashumaro.mixins.json import DataClassJSONMixin
 
 @dataclass
 class LibrenmsDeviceInfo(DataClassJSONMixin):
-    """Representation of the librenms device information."""
+    """Representation of the librenms device information.
+
+    Only fields which are `NOT NULL` in the librenms database schema are
+    required, everything else may legitimately be `null` in the api response
+    (f.e. `hardware` of a device without snmp support) and therefore is
+    optional.
+    """
 
     # non-default fields
     agent_uptime: int
@@ -19,21 +25,10 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     disable_notify: bool
     disabled: bool
     display: str
-    hardware: str
     hostname: str
     ignore_status: bool
     ignore: bool
-    inserted: datetime
-    ip: str
-    last_discovered_timetaken: float
-    last_polled_timetaken: float
-    last_polled: datetime
     max_depth: int
-    mtu_status: bool
-    os: str
-    override_sys_location: bool = field(
-        metadata=field_options(alias="override_sysLocation")
-    )
     poller_group: int
     port_association_mode: int
     port: int
@@ -41,7 +36,6 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     snmpver: str
     status_reason: str
     status: bool
-    sys_name: str = field(metadata=field_options(alias="sysName"))
     transport: str
     type: str
 
@@ -60,16 +54,28 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     dependency_parent_id: str | None = field(default=None)
     display_template: str | None = field(default=None)
     features: str | None = field(default=None)
+    hardware: str | None = field(default=None)
     icon: str | None = field(default=None)
+    inserted: datetime | None = field(default=None)
+    ip: str | None = field(default=None)
+    last_discovered_timetaken: float | None = field(default=None)
     last_discovered: datetime | None = field(default=None)
     last_ping_timetaken: float | None = field(default=None)
     last_ping: datetime | None = field(default=None)
     last_poll_attempted: datetime | None = field(default=None)
+    last_polled_timetaken: float | None = field(default=None)
+    last_polled: datetime | None = field(default=None)
     lat: float | None = field(default=None)
     lng: float | None = field(default=None)
     location_id: int | None = field(default=None)
     location: str | None = field(default=None)
+    # mtu_status was added in librenms 25.12 and is missing on older instances
+    mtu_status: bool | None = field(default=None)
     notes: str | None = field(default=None)
+    os: str | None = field(default=None)
+    override_sys_location: bool | None = field(
+        default=None, metadata=field_options(alias="override_sysLocation")
+    )
     overwrite_ip: str | None = field(default=None)
     purpose: str | None = field(default=None)
     retries: str | None = field(default=None)
@@ -83,6 +89,7 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     sys_descr: str | None = field(
         default=None, metadata=field_options(alias="sysDescr")
     )
+    sys_name: str | None = field(default=None, metadata=field_options(alias="sysName"))
     sys_object_id: str | None = field(
         default=None, metadata=field_options(alias="sysObjectID")
     )
