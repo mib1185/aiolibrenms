@@ -19,7 +19,6 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     disable_notify: bool
     disabled: bool
     display: str
-    hardware: str
     hostname: str
     ignore_status: bool
     ignore: bool
@@ -60,6 +59,8 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     dependency_parent_id: str | None = field(default=None)
     display_template: str | None = field(default=None)
     features: str | None = field(default=None)
+    # null for devices without snmp support, f.e. a device discovered by ping only
+    hardware: str | None = field(default=None)
     icon: str | None = field(default=None)
     last_discovered: datetime | None = field(default=None)
     last_ping_timetaken: float | None = field(default=None)
