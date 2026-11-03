@@ -8,7 +8,8 @@ version = "0.0.4"
 description = "Asynchronous library to fetch data from a libreNMS instance."
 authors = [{ name = "mib1185" }]
 readme = "README.md"
-license.text = "Apache-2.0"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 requires-python = '>=3.11'
 dependencies = ["aiohttp", "mashumaro"]
 classifiers = [
@@ -23,14 +24,31 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+[dependency-groups]
+dev = [
+    "aiointercept==0.1.11",
+    "black==26.5.1",
+    "mypy==2.3.1",
+    "pre-commit-hooks==6.0.0",
+    "prek==0.5.9",
+    "pylint==4.0.9",
+    "pytest-asyncio==1.4.0",
+    "pytest-cov==7.1.0",
+    "pytest==9.1.1",
+    "reorder-python-imports==3.17.0",
+    "syrupy==6.1.1",
+]
+
 [project.urls]
 homepage = 'https://github.com/mib1185/aiolibrenms'
 repository = 'https://github.com/mib1185/aiolibrenms'
 
 [tool.setuptools]
-package-data = { "aiolibrenms" = ["py.typed", "*.py", "**/*.py"] }
+package-data = { "aiolibrenms" = ["py.typed"] }
 platforms = ["any"]
-packages = ["aiolibrenms"]
+
+[tool.setuptools.packages.find]
+include = ["aiolibrenms*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
