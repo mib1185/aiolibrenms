@@ -8,6 +8,90 @@ MOCK_LNMS_HOST = "localhost"
 MOCK_LNMS_API_KEY = "abcdef1234567890"
 
 MOCK_DATA: dict = {
+    # LibreNMS >= 26.10 reads alerts from the alert_faults table
+    "alerts?state=1,2,3,4,5": {
+        "status": 200,
+        "body": json.dumps(
+            {
+                "status": "ok",
+                "alerts": [
+                    {
+                        "hostname": "192.168.1.2",
+                        "id": 7,
+                        "rule_id": 3,
+                        "device_id": 13,
+                        "entity_type": None,
+                        "entity_id": None,
+                        "entity_key": "",
+                        "state": 2,
+                        "alerted": 1,
+                        "open": 1,
+                        "severity": "critical",
+                        "note": "",
+                        "info": None,
+                        "details": {"rule": [{"device_id": 13}]},
+                        "first_seen": "2026-10-31 18:02:11",
+                        "last_seen": "2026-11-01 09:15:03",
+                        "timestamp": "2026-11-01 09:15:03",
+                        "name": "Devices up/down",
+                        "proc": None,
+                        "notes": None,
+                    },
+                    {
+                        "hostname": "192.168.1.3",
+                        "id": 9,
+                        "rule_id": 5,
+                        "device_id": 3,
+                        "entity_type": "port",
+                        "entity_id": 42,
+                        "entity_key": "port:42",
+                        "state": 1,
+                        "alerted": 0,
+                        "open": 1,
+                        "severity": "warning",
+                        "note": None,
+                        "info": None,
+                        "details": None,
+                        "first_seen": "2026-11-01 08:40:00",
+                        "last_seen": "2026-11-01 09:15:03",
+                        "timestamp": "2026-11-01 08:40:00",
+                        "name": "Port utilization over threshold",
+                        "proc": "https://wiki.example.com/port-utilization",
+                        "notes": "Check the uplink first",
+                    },
+                ],
+                "count": 2,
+            }
+        ),
+    },
+    # LibreNMS < 26.10 reads alerts from the alerts table
+    "alerts?state=2": {
+        "status": 200,
+        "body": json.dumps(
+            {
+                "status": "ok",
+                "alerts": [
+                    {
+                        "hostname": "192.168.1.2",
+                        "id": 4,
+                        "device_id": 13,
+                        "rule_id": 3,
+                        "state": 2,
+                        "alerted": 1,
+                        "open": 1,
+                        "note": "",
+                        "timestamp": "2026-08-14 21:37:04",
+                        "info": "",
+                        "severity": "critical",
+                        "name": "Devices up/down",
+                        "proc": None,
+                        "notes": None,
+                    },
+                ],
+                "count": 1,
+            }
+        ),
+    },
     "devices": {
         "status": 200,
         "body": json.dumps(
