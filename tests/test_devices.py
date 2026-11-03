@@ -23,6 +23,21 @@ async def test_get_device(mock_librenms_with_data, snapshot: SnapshotAssertion):
     assert device == snapshot
 
 
+async def test_get_device_with_null_fields(
+    mock_librenms_with_data, snapshot: SnapshotAssertion
+):
+    """Test async_get_device with columns librenms leaves NULL."""
+    api = await mock_librenms_with_data()
+    device = await api.devices.async_get_device("31")
+    assert isinstance(device, LibrenmsDeviceInfo)
+    assert device.inserted is None
+    assert device.ip is None
+    assert device.last_polled is None
+    assert device.os is None
+    assert device.sys_name is None
+    assert device == snapshot
+
+
 async def test_get_device_availabilities(
     mock_librenms_with_data, snapshot: SnapshotAssertion
 ):
