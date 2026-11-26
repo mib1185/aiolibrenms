@@ -35,14 +35,10 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
         metadata=field_options(alias="override_sysLocation")
     )
     poller_group: int
-    port_association_mode: int
-    port: int
     snmp_disable: bool
-    snmpver: str
     status_reason: str
     status: bool
     sys_name: str = field(metadata=field_options(alias="sysName"))
-    transport: str
     type: str
 
     # default fields
@@ -71,12 +67,15 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
     location: str | None = field(default=None)
     notes: str | None = field(default=None)
     overwrite_ip: str | None = field(default=None)
+    port_association_mode: int | None = field(default=None)
+    port: int | None = field(default=None)
     purpose: str | None = field(default=None)
     retries: str | None = field(default=None)
     serial: str | None = field(default=None)
     snmp_engine_id: str | None = field(
         default=None, metadata=field_options(alias="snmpEngineID")
     )
+    snmpver: str | None = field(default=None)
     sys_contact: str | None = field(
         default=None, metadata=field_options(alias="sysContact")
     )
@@ -87,6 +86,7 @@ class LibrenmsDeviceInfo(DataClassJSONMixin):
         default=None, metadata=field_options(alias="sysObjectID")
     )
     timeout: str | None = field(default=None)
+    transport: str | None = field(default=None)
     uptime: int | None = field(default=None)
     version: str | None = field(default=None)
 
