@@ -11,7 +11,7 @@ async def test_get_devices(mock_librenms_with_data, snapshot: SnapshotAssertion)
     """Test async_get_devices."""
     api = await mock_librenms_with_data()
     devices = await api.devices.async_get_devices()
-    assert len(devices) == 7
+    assert len(devices) == 8
     assert devices == snapshot
 
 
